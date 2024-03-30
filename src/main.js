@@ -60,17 +60,19 @@ async function handleSubmit(event){
                 message: "Sorry, there are no images matching your search query. Please try again!",
                 position: 'topRight',
             });
+            return;
         }
+        checkBtnStatus();
     } catch (error){
         iziToast.error({
             title: 'Error',
             message: "Sorry, there was an error processing your request. Please try again later!",
             position: 'topRight',
         });
+    } finally {
+        hideLoader();
+        searchForm.reset();
     }
-    hideLoader();
-    checkBtnStatus();
-    searchForm.reset();
 }
 
 btnLoadMore.addEventListener("click", onLoadMoreClick);
