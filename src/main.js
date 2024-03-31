@@ -51,7 +51,6 @@ async function handleSubmit(event){
         const markup = imageTemplate(data.hits);
         gallery.insertAdjacentHTML('beforeend', markup);
 
-        galleryBox.on('show.simplelightbox', function () {});
         galleryBox.refresh();
 
         if(data.hits.length === 0){
@@ -86,7 +85,6 @@ async function onLoadMoreClick() {
         const markup = imageTemplate(data.hits);
         gallery.insertAdjacentHTML('beforeend', markup);
 
-        galleryBox.on('show.simplelightbox', function () {});
         galleryBox.refresh();
 
     } catch (error){
@@ -96,7 +94,7 @@ async function onLoadMoreClick() {
             position: 'topRight',
         });
     }
-    myScroll();
+    scrollToNextImages();
     hideLoader();
     checkBtnStatus();
 }
@@ -131,7 +129,7 @@ function hideLoadMore() {
     btnLoadMore.classList.add('hidden');
 }
 
-function myScroll() {
+function scrollToNextImages() {
     const height = gallery.firstChild.getBoundingClientRect().height;
   
     window.scrollBy({
